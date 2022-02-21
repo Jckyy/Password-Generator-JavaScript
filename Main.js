@@ -1,13 +1,12 @@
-let generatedPassword;
-const lowercase = "abcdefghijklmnopqrstuvwxyz";
+let resultPassword;
 const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const lowercase = "abcdefghijklmnopqrstuvwxyz";
 const digits = "0123456789";
+const space = " ";
 const minus = "-";
 const underline = "_";
 const special = "!\"#$%'()*+,./:;=?@\\^`~";
 const brackets = "[]{}<>";
-console.log("Hello");
-document.write("Fuck");
 
 // Create Random Int in range (inclusive)
 function getRandomIntInclusive(min, max) {
@@ -33,3 +32,9 @@ function makeName(length) {
 	result[0] = result[0].toUpperCase();
 	return result.join("");
 }
+
+function initialise() {
+    let includeUppercase = document.getElementById()
+}
+
+function makePassword();
