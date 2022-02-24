@@ -1,0 +1,7 @@
+#pPasswordHistory p:first-child::after {
+	margin-left: 20px;
+	padding: 5px;
+	border-radius: 20px;
+	content: "New";
+	background-color: aqua;
+}

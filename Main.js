@@ -1,3 +1,4 @@
+"use strict";
 let resultPassword;
 const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const lowercase = "abcdefghijklmnopqrstuvwxyz";
@@ -7,34 +8,70 @@ const minus = "-";
 const underline = "_";
 const special = "!\"#$%'()*+,./:;=?@\\^`~";
 const brackets = "[]{}<>";
+let passwordHistory = [];
 
-// Create Random Int in range (inclusive)
-function getRandomIntInclusive(min, max) {
-	min = Math.ceil(min);
-	max = Math.floor(max);
-	return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-// Create Random Float in range (inclusive)
-function getRandomFloatInclusive(min, max) {
-	min = Math.ceil(min);
-	max = Math.floor(max);
-	return Math.random() * (max - min + 1) + min;
-}
+let characterNames = [uppercase, lowercase, digits, space, minus, underline, special, brackets];
 
 // Generate random string to length
-function makeName(length) {
+function createString(length, characters) {
 	let result = [];
-	let characters = "abcdefghijklmnopqrstuvwxyz";
-	for (var i = 0; i < length; i++) {
+	for (let i = 0; i < length; i++) {
 		result.push(characters.charAt(Math.floor(Math.random() * characters.length)));
 	}
-	result[0] = result[0].toUpperCase();
 	return result.join("");
 }
 
-function initialise() {
-    let includeUppercase = document.getElementById()
+// Setup variables and array for generation
+function createCharacterList() {
+	let characterList = "";
+	let includeUppercase = document.getElementById("uppercaseCheckbox");
+	let includeLowercase = document.getElementById("lowercaseCheckbox");
+	let includeDigits = document.getElementById("digitsCheckbox");
+	let includeSpace = document.getElementById("spaceCheckbox");
+	let includeMinus = document.getElementById("minusCheckbox");
+	let includeUnderline = document.getElementById("underlineCheckbox");
+	let includeSpecial = document.getElementById("specialCheckbox");
+
+	let checkboxes = [
+		includeUppercase,
+		includeLowercase,
+		includeDigits,
+		includeSpace,
+		includeMinus,
+		includeUnderline,
+		includeSpecial,
+	];
+
+	// Adds all characters in checked categories into one string
+	for (let i = 0; i < checkboxes.length; i++) {
+		if (checkboxes[i].checked) {
+			characterList += characterNames[i];
+		}
+	}
+	return characterList;
 }
 
-function makePassword();
+function writePasswordToHTML() {
+	// Shows a large generated password
+	document.getElementById("pShowPassword").innerHTML = `<mark>${resultPassword}</mark>`;
+	//
+	let pPasswordHistoryID = document.getElementById("pPasswordHistory");
+	let body = "";
+	// for (let i = 0; i < passwordHistory.length; i++) {
+	// 	body = `${passwordHistory[i]}<br>` + body;
+	// }
+	for (let i = 0; i < passwordHistory.length; i++) {
+		body = `<p>${passwordHistory[i]}</p>` + body;
+	}
+
+	pPasswordHistoryID.innerHTML = body;
+}
+
+function makePassword() {
+	let length = document.getElementById("lengthInput");
+	let characters = createCharacterList();
+	resultPassword = createString(length.value, characters);
+	passwordHistory.push(resultPassword);
+	writePasswordToHTML();
+	// pShowPasswordId.innerHtml = resultPassword;
+}

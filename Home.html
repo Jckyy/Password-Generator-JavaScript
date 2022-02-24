@@ -8,10 +8,12 @@
 			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 			crossorigin="anonymous"
 		/>
+		<link href="Main.css" rel="stylesheet" />
+
 		<title>Jacky's JavaScript Password Generator</title>
 		<script src="Main.js"></script>
 	</head>
-	<body onload="initialise();">
+	<body>
 		<div class="container">
 			<h1 class="h1">JavaScript Password Generator</h1>
 		</div>
@@ -24,6 +26,18 @@
 							<div class="col">
 								<label for="lengthInput">Length of generated password:</label>
 								<br /><br />
+							</div>
+							<div class="col">
+								<input type="number" id="lengthInput" value="20" min="1" max="100" />
+								<br /><br />
+							</div>
+							<div class="col"></div>
+							<div class="col"></div>
+						</div>
+					</div>
+					<div class="position-relative">
+						<div class="row align-items-start">
+							<div class="col">
 								<input type="checkbox" class="form-check-input" id="uppercaseCheckbox" />
 								<label for="uppercaseCheckbox">&nbsp;Uppercase (A, B, C, ...)</label>
 								<br />
@@ -37,8 +51,6 @@
 								<label for="spaceCheckbox">&nbsp;Space ( )</label>
 							</div>
 							<div class="col">
-								<input type="number" id="lengthInput" value="20" min="1" max="100" />
-								<br /><br />
 								<input type="checkbox" class="form-check-input" id="minusCheckbox" />
 								<label for="minusCheckbox">&nbsp;Minus (-)</label>
 								<br />
@@ -53,10 +65,19 @@
 							<div class="col"></div>
 						</div>
 					</div>
-					<br />
-					<input type="button" value="Generate" onclick="makePassword();" />
+					<br /><br />
+					<div>
+						<input type="button" value="Generate" onclick="makePassword();" />
+						<br /><br />
+						<p id="pShowPassword" class="h2">&nbsp;</p>
+					</div>
 				</fieldset>
 			</form>
+		</div>
+		<br /><br />
+		<div class="container">
+			<h4>History</h4>
+			<div id="pPasswordHistory"></div>
 		</div>
 	</body>
 </html>
